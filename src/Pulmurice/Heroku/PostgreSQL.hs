@@ -15,7 +15,6 @@ module Pulmurice.Heroku.PostgreSQL (parseDatabaseUrl) where
 
 import Control.Applicative
 import Data.List.Split
-import Data.Word
 import Database.PostgreSQL.Simple
 import Network.URI
 
@@ -43,14 +42,14 @@ dropLast [_]    = []
 dropLast (x:xs) = x : dropLast xs
 
 uriAuthParameters :: URIAuth -> ConnectInfoChange
-uriAuthParameters uriAuth = port . host . info
+uriAuthParameters uriAuth = port . host . auth
   where port = case uriPort uriAuth of
                  (':' : p) -> \info -> info { connectPort = read p }
                  _         -> id
         host = case uriRegName uriAuth of
                  "" -> id
                  h  -> \info -> info { connectHost = h }
-        info = case splitOn ":" (uriUserInfo uriAuth) of
+        auth = case splitOn ":" (uriUserInfo uriAuth) of
                  [""]   -> id
                  [u]    -> \info -> info { connectUser = dropLast u }
                  [u, p] -> \info -> info { connectUser = u, connectPassword = dropLast p }
