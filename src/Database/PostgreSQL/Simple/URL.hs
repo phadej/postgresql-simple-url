@@ -1,32 +1,32 @@
 -----------------------------------------------------------------------------
 -- |
--- Module      :  Pulmurice.Heroku.PostgreSQL
--- Copyright   :  2014 © Futurice OY, Oleg Grenrus
+-- Module      :  Database.PostgreSQL.Simple.URL
+-- Copyright   :  2014, 2015 © Futurice OY, Oleg Grenrus
 -- License     :  MIT (see the file LICENSE)
 --
 -- Maintainer  :  Oleg Grenrus <oleg.grenrus@iki.fi>
--- Stability   :  experimental
--- Portability :  non-portable (GHC only)
---
--- parse DATABASE_URL into ConnectInfo
 --
 ----------------------------------------------------------------------------
-module Pulmurice.Heroku.PostgreSQL (parseDatabaseUrl) where
+module Database.PostgreSQL.Simple.URL (parseDatabaseUrl, uriToConnectInfo) where
 
 import Control.Applicative
 import Data.List.Split
 import Database.PostgreSQL.Simple
 import Network.URI
 
+-- | Parse string url into `ConnectInfo`.
+-- 
+-- > parseDatabaseURL "postgres://foo:bar@example.com:2345/database" == ConnectInfo "example.com" 2345 "foo" "bar" "database"
 parseDatabaseUrl :: String -> Maybe ConnectInfo
-parseDatabaseUrl databaseUrl = parseURI databaseUrl >>= f
-  where f uri | uriScheme uri /= "postgres:" = Nothing
-              | otherwise                    = ($ emptyInfo) <$> mkConnectInfo uri
+parseDatabaseUrl databaseUrl = parseURI databaseUrl >>= uriToConnectInfo
+  where 
+
+uriToConnectInfo :: URI -> Maybe ConnectInfo
+uriToConnectInfo uri
+  | uriScheme uri /= "postgres:" = Nothing
+  | otherwise                    = ($ defaultConnectInfo) <$> mkConnectInfo uri
 
 type ConnectInfoChange = ConnectInfo -> ConnectInfo
-
-emptyInfo :: ConnectInfo
-emptyInfo = ConnectInfo "" 0 "" "" ""
 
 mkConnectInfo :: URI -> Maybe ConnectInfoChange
 mkConnectInfo uri = case uriPath uri of

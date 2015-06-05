@@ -1,6 +1,6 @@
-name:                pulmurice-heroku
+name:                postgresql-simple-url
 version:             0.1.0.0
-synopsis:            Heroku helpers for pulmurice server
+synopsis:            PostgreSQL
 homepage:            https://github.com/futurice/pulmurice-heroku
 license:             MIT
 license-file:        LICENSE
@@ -14,11 +14,11 @@ extra-source-files:  README.md, .gitignore
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Pulmurice.Heroku.PostgreSQL
-  build-depends:       base >=4.7 && <4.8,
-                       split >=0.2 && <0.3,
-                       network-uri >=2.6 && <2.7,
-                       postgresql-simple >=0.4 && <0.5
+  exposed-modules:     Database.PostgreSQL.Simple.URL
+  build-depends:       base               >=4.6 && <4.9,
+                       split              >=0.2 && <0.3,
+                       network-uri        >=2.6 && <2.7,
+                       postgresql-simple  >=0.4 && <0.5
   hs-source-dirs:      src
   ghc-options:         -Wall
   default-language:    Haskell2010
@@ -29,8 +29,8 @@ test-suite test
   hs-source-dirs:      tests
   main-is:             Tests.hs
   ghc-options:         -Wall
-  build-depends:       base >=4.7 && <4.8,
-                       tasty ==0.10.*,
-                       tasty-quickcheck == 0.8.*,
-                       postgresql-simple >=0.4 && <0.5,
-                       pulmurice-heroku
+  build-depends:       base               >=4.6  && <4.9,
+                       tasty              >=0.10 && <0.11,
+                       tasty-quickcheck   >=0.8  && <0.9,
+                       postgresql-simple  >=0.4 && <0.5,
+                       postgresql-simple-url
