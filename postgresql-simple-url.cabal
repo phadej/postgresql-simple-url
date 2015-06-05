@@ -1,7 +1,7 @@
 name:                postgresql-simple-url
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            PostgreSQL
-homepage:            https://github.com/futurice/pulmurice-heroku
+homepage:            https://github.com/futurice/postgresql-simple-url
 license:             MIT
 license-file:        LICENSE
 author:              Oleg Grenrus
