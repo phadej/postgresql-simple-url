@@ -15,11 +15,10 @@ import Database.PostgreSQL.Simple
 import Network.URI
 
 -- | Parse string url into `ConnectInfo`.
--- 
+--
 -- > parseDatabaseURL "postgres://foo:bar@example.com:2345/database" == ConnectInfo "example.com" 2345 "foo" "bar" "database"
 parseDatabaseUrl :: String -> Maybe ConnectInfo
 parseDatabaseUrl databaseUrl = parseURI databaseUrl >>= uriToConnectInfo
-  where 
 
 uriToConnectInfo :: URI -> Maybe ConnectInfo
 uriToConnectInfo uri
