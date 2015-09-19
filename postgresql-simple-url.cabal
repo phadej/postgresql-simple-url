@@ -16,6 +16,10 @@ build-type:          Simple
 extra-source-files:  README.md, .gitignore
 cabal-version:       >=1.10
 
+source-repository head
+  type: git
+  location: https://github.com/futurice/postgresql-simple-url
+
 library
   exposed-modules:     Database.PostgreSQL.Simple.URL
   build-depends:       base               >=4.6 && <4.9,
