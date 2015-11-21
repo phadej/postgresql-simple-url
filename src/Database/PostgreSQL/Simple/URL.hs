@@ -13,6 +13,7 @@ import Control.Applicative
 import Data.List.Split
 import Database.PostgreSQL.Simple
 import Network.URI
+import Prelude
 
 -- | Parse string url into `ConnectInfo`.
 --
