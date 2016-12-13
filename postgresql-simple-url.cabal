@@ -1,5 +1,5 @@
 name:                postgresql-simple-url
-version:             0.1.0.1
+version:             0.2.0.0
 synopsis:            Parse postgres:// url into ConnectInfo
 description:
   The 'Database.PostgreSQL.Simple.URL' module in this package exports
@@ -13,7 +13,7 @@ copyright:           Copyright © 2014 Futurice OY, Oleg Grenrus
 stability:           experimental
 category:            Game
 build-type:          Simple
-extra-source-files:  README.md, .gitignore
+extra-source-files:  README.md, CHANGELOG.md, .gitignore
 cabal-version:       >=1.10
 
 source-repository head
