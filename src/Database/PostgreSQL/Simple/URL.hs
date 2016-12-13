@@ -47,7 +47,6 @@ uriAuthParameters uriAuth = port . host . auth
                  (':' : p) -> \info -> info { connectPort = read p }
                  _         -> id
         host = case uriRegName uriAuth of
-                 "" -> id
                  h  -> \info -> info { connectHost = h }
         auth = case splitOn ":" (uriUserInfo uriAuth) of
                  [""]   -> id
