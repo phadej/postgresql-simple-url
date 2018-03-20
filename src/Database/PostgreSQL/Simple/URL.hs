@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  Database.PostgreSQL.Simple.URL
--- Copyright   :  2014, 2015 © Futurice OY, Oleg Grenrus
+-- Copyright   :  2014-2018 © Futurice OY, Oleg Grenrus
 -- License     :  MIT (see the file LICENSE)
 --
 -- Maintainer  :  Oleg Grenrus <oleg.grenrus@iki.fi>
@@ -17,14 +17,19 @@ import Prelude
 
 -- | Parse string url into `ConnectInfo`.
 --
--- > parseDatabaseURL "postgres://foo:bar@example.com:2345/database" == ConnectInfo "example.com" 2345 "foo" "bar" "database"
+-- >>> parseDatabaseUrl "postgres://foo:bar@example.com:2345/database"
+-- Just (ConnectInfo {connectHost = "example.com", connectPort = 2345, connectUser = "foo", connectPassword = "bar", connectDatabase = "database"})
+--
+-- >>> parseDatabaseUrl "postgresql://foo:bar@example.com:2345/database"
+-- Just (ConnectInfo {connectHost = "example.com", connectPort = 2345, connectUser = "foo", connectPassword = "bar", connectDatabase = "database"})
+--
 parseDatabaseUrl :: String -> Maybe ConnectInfo
 parseDatabaseUrl databaseUrl = parseURI databaseUrl >>= uriToConnectInfo
 
 uriToConnectInfo :: URI -> Maybe ConnectInfo
 uriToConnectInfo uri
-  | uriScheme uri /= "postgres:" = Nothing
-  | otherwise                    = ($ defaultConnectInfo) <$> mkConnectInfo uri
+  | uriScheme uri /= "postgres:" && uriScheme uri /= "postgresql:" = Nothing
+  | otherwise = ($ defaultConnectInfo) <$> mkConnectInfo uri
 
 type ConnectInfoChange = ConnectInfo -> ConnectInfo
 
