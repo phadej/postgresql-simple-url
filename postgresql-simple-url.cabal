@@ -1,6 +1,5 @@
 name:                postgresql-simple-url
-version:             0.2.0.0
-x-revision:          2
+version:             0.2.1.0
 synopsis:            Parse postgres:// url into ConnectInfo
 description:
   The 'Database.PostgreSQL.Simple.URL' module in this package exports
@@ -10,7 +9,7 @@ license:             MIT
 license-file:        LICENSE
 author:              Oleg Grenrus
 maintainer:          Oleg Grenrus <oleg.grenrus@iki.fi>
-copyright:           Copyright © 2014 Futurice OY, Oleg Grenrus
+copyright:           Copyright © 2014-2018 Futurice OY, Oleg Grenrus
 stability:           experimental
 category:            Game
 build-type:          Simple
