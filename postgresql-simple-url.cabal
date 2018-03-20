@@ -3,7 +3,13 @@ version:             0.2.1.0
 synopsis:            Parse postgres:// url into ConnectInfo
 description:
   The 'Database.PostgreSQL.Simple.URL' module in this package exports
-  two helper functions 'parseDatabaseUrl' and 'urlToConnectInfo'.
+  two helper functions 'parseDatabaseUrl' and 'urlToConnectInfo' to
+  construct 'ConnectInfo' from URI (or string).
+  .
+  @
+  >>> parseDatabaseUrl "postgres://foo:bar@example.com:2345/database"
+  Just (ConnectInfo {connectHost = "example.com", connectPort = 2345, connectUser = "foo", connectPassword = "bar", connectDatabase = "database"})
+  @
 homepage:            https://github.com/futurice/postgresql-simple-url
 license:             MIT
 license-file:        LICENSE
@@ -11,7 +17,7 @@ author:              Oleg Grenrus
 maintainer:          Oleg Grenrus <oleg.grenrus@iki.fi>
 copyright:           Copyright © 2014-2018 Futurice OY, Oleg Grenrus
 stability:           experimental
-category:            Game
+category:            Database
 build-type:          Simple
 extra-source-files:  README.md, CHANGELOG.md
 cabal-version:       >=1.10
