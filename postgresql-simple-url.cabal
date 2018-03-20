@@ -8,7 +8,7 @@ description:
   .
   @
   >>> parseDatabaseUrl "postgres://foo:bar@example.com:2345/database"
-  Just (ConnectInfo {connectHost = "example.com", connectPort = 2345, connectUser = "foo", connectPassword = "bar", connectDatabase = "database"})
+  Just (ConnectInfo "example.com" 2345 "foo" "bar" "database")
   @
 homepage:            https://github.com/futurice/postgresql-simple-url
 license:             MIT
