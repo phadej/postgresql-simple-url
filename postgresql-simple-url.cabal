@@ -1,6 +1,6 @@
 name:                postgresql-simple-url
 version:             0.2.1.0
-x-revision:          1
+x-revision:          2
 
 synopsis:            Parse postgres:// url into ConnectInfo
 category:            Database
